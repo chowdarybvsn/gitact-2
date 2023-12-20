@@ -6,5 +6,7 @@ jobs:
   first_job:
    runs-on: ubuntu-latest
    steps:
+   - name: git checkout
+     uses: actions/checkout@v4
    - name: start a job
      run: date
