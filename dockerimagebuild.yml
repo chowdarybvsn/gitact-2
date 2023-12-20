@@ -3,7 +3,7 @@ on: push
 env:
   DOCKER_USERNAME: chowdarybvsn
   CONTAINER_REGISTRY: ${{env.CONTAINER_REGISTRY}}
-  IMAGE_NAME: IMAGE_NAME
+  IMAGE_NAME: custom-nginx
 jobs:
   docker:
      runs-on: ubuntu-latest
