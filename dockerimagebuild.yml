@@ -3,20 +3,20 @@ on: push
 env:
   DOCKER_USERNAME: chowdarybvsn
   CONTAINER_REGISTRY: ${{env.CONTAINER_REGISTRY}}
-  IMAGE_NAME: custom-nginx
+  IMAGE_NAME: IMAGE_NAME
 jobs:
   docker:
      runs-on: ubuntu-latest
      - name: build
-       run: docker build . -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.custom-nginx }}:latest
+       run: docker build . -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
      - name: login
        run:  docker login --Username=${{ env.DOCKER_USERNAME }} --password=Docker@2023
      - name: pushing
-       run: docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME}}/${{ env.custom-nginx }}:latest
+       run: docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME}}/${{ env.IMAGE_NAME }}:latest
 
   deploy:
     needs: docker
     steps:
     - name: docker deploy
-      run: docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.custom-nginx }}:latest
+      run: docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
      
