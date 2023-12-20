@@ -9,6 +9,6 @@ jobs:
    - name: git checkout
      uses: actions/checkout@v4
    - name: start a job
-     run: date
+     run: docker ps -a
    - name: list files
      run: ls
