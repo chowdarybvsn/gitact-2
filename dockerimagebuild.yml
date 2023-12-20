@@ -8,15 +8,15 @@ jobs:
   docker:
      runs-on: ubuntu-latest
      - name: build
-       run: docker build . -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+       run: echo docker build . -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
      - name: login
-       run:  docker login --Username=${{ env.DOCKER_USERNAME }} --password=Docker@2023
+       run:  echo docker login --Username=${{ env.DOCKER_USERNAME }} --password=Docker@2023
      - name: pushing
-       run: docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME}}/${{ env.IMAGE_NAME }}:latest
+       run: echo docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME}}/${{ env.IMAGE_NAME }}:latest
 
   deploy:
     needs: docker
     steps:
     - name: docker deploy
-      run: docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+      run: echo docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
      
