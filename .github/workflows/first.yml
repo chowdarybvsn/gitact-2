@@ -10,3 +10,5 @@ jobs:
      uses: actions/checkout@v4
    - name: start a job
      run: date
+   - name: list files
+     run: ls
