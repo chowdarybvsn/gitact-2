@@ -21,8 +21,29 @@ jobs:
         mkdir -p dist
         cp -r build/* dist/
       # Archive the 'dist' directory as an artifact
-    - name: Archive artifact
-      uses: actions/upload-artifact@v2
+    jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Build and package artifact
+      run: |
+        # Your build steps here
+        npm install
+        npm run build
+        mkdir -p dist
+        cp -r build/* dist/
+      # Archive the 'dist' directory as an artifact
+      - name: Archive artifact
+        uses: actions/upload-artifact@v2
         with:
           name: my-artifact
           path: dist
