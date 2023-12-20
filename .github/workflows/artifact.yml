@@ -1,30 +1,29 @@
-name: getting artifact
-on: push
+name: Upload-Download Artifact Example
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
-     runs-on: ubuntu-latest
- 
-     steps:
-          - name: Checkout repository
-            uses: actions/checkout@v2
-          
-          - name: create directory
-            run: mkdir testarti
+    runs-on: ubuntu-latest
 
-          - name: Set up Node.js
-            uses: actions/setup-node@v3
-            with:
-              node-version: '14'
-              working-directory: testarti/
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-          - name: Install dependencies and build
-            run: |
-              npm install
-              npm run build
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v1
 
-          - name: Archive artifact
-            uses: actions/upload-artifact@v2
-            with:
-              name: my-artifact
-              path: dist
+    - name: Build Docker image
+      run: |
+        docker build -t my-docker-image .
+        docker save -o my-docker-image.tar my-docker-image
+      shell: bash
+
+    - name: Archive Docker image as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: docker-image-artifact
+        path: my-docker-image.tar
