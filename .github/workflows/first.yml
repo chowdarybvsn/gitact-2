@@ -3,7 +3,7 @@ name: myfirstjob
 on: push
 
 jobs:
-   runs-on: ubuntu
+   runs-on: ubuntu-latest
    steps:
    - name: start a job
      run: date
