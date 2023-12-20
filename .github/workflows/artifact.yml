@@ -8,11 +8,15 @@ jobs:
      steps:
           - name: Checkout repository
             uses: actions/checkout@v2
+          
+          - name: create directory
+            run: mkdir testarti
 
           - name: Set up Node.js
             uses: actions/setup-node@v3
             with:
               node-version: '14'
+              working-directory: testarti/
 
           - name: Install dependencies and build
             run: |
