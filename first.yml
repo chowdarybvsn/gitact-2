@@ -1,1 +1,9 @@
+name: myfirstjob
 
+on: push
+
+jobs:
+   runs-on: ubuntu
+   steps:
+   - name: start a job
+     run: date
