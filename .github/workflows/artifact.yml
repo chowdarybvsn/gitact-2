@@ -1,10 +1,4 @@
-name: aboutartifacts
-on: push
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
+ steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -13,16 +7,13 @@ jobs:
       with:
         node-version: '14'
 
-    - name: Build and package artifact
+    - name: Install dependencies and build
       run: |
-        # Your build steps here
         npm install
         npm run build
-        mkdir -p dist
-        cp -r build/* dist/
-      # Archive the 'dist' directory as an artifact
+
     - name: Archive artifact
       uses: actions/upload-artifact@v2
       with:
-          name: my-artifact
-          path: dist
+        name: my-artifact
+        path: dist
