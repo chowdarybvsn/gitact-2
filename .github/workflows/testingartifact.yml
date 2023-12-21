@@ -1,0 +1,15 @@
+name: testartifacts
+on: push
+jobs:
+        build:
+          runs-on: ubuntu-latest
+          steps:
+          - name: Checkout code
+            uses: actions/checkout@v2
+      
+          - name: Build
+            run: |
+              # Your build commands here
+              mkdir artifacts
+              echo "Hello, this is a build artifact" > artifacts/build-output.txt
+
