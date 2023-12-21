@@ -12,4 +12,7 @@ jobs:
               # Your build commands here
               mkdir artifacts
               echo "Hello, this is a build artifact" > artifacts/build-output.txt
-
+          - name: show files
+            run: |
+              pwd
+              ls -ltr
